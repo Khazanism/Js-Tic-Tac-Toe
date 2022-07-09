@@ -8,7 +8,7 @@
 
 :root {
   --cell-size: 100px;
-  --mark-size: cal(var(--cell-size) * 0.9);
+  --mark-size: calc(var(--cell-size) * 0.9);
 }
 
 body {
@@ -29,6 +29,89 @@ body {
 .cell {
   width: var(--cell-size);
   height: var(--cell-size);
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* to centralize the X */
+}
+
+/* removing outer borders from cells */
+
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+  border-top: none;
+  border-bottom: none;
+}
+
+.cell:nth-child(3n + 1) {
+  border-left: none;
+  border-right: none;
+}
+
+.cell:nth-child(3n + 3) {
+  border-right: none;
+  border-left: none;
+}
+
+.cell:last-child,
+.cell:nth-child(7),
+.cell:nth-child(8) {
+  border-bottom: none;
+  border-top: none;
+}
+
+/* Highlighting over Cell */
+
+.cell.x,
+.cell.circle {
+  cursor: not-allowed;
+}
+
+.cell.x .cell:hover {
+}
+
+/* stylling-Rendering X */
+
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:hover::before,
+.board.x .cell:hover::after {
+  content: "";
+  position: absolute; /* to centralize the X */
+  width: calc(var(--mark-size) * 0.15);
+  height: var(--mark-size);
   background-color: black;
-  border: 1px solid white;
+}
+
+.cell.x::before,
+.board.x .cell:hover::before {
+  transform: rotate(45deg);
+}
+
+.cell.x::after,
+.board.x .cell:hover::after {
+  transform: rotate(-45deg);
+}
+
+/* stylling-Rendering X */
+
+.cell.circle::before,
+.cell.circle::after {
+  content: "";
+  position: absolute; /* to centralize the O */
+  border-radius: 50%;
+}
+
+.cell.circle::before {
+  width: var(--mark-size);
+  height: var(--mark-size);
+  background-color: black;
+}
+
+.cell.circle::after {
+  width: calc(var(--mark-size) * 0.7);
+  height: calc(var(--mark-size) * 0.7);
+  background-color: white;
 }
