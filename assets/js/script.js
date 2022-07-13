@@ -23,11 +23,11 @@ let circleTurn;
 
 startGame();
 
-function startGame(params) {
+function startGame() {
   circleTurn = false;
 
-  cellElements.forEach((cell) => {
-    cell.addEventListener("click", handleClick, { once: true });
+  cellElements.forEach(cell => {
+    cell.addEventListener('click', handleClick, { once: true });
   });
   setBoardHoverClass();
 }
@@ -48,9 +48,7 @@ function handleClick(e) {
   }
 
   //switch turns
-  swapTurns();
   // Hover mark
-  setBoardHoverClass();
   // check for win
   //check for draw
 }
